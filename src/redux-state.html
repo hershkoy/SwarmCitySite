@@ -325,9 +325,12 @@ let reducer = function(state, action) {
             });
         }
         case 'ADD_ITEM': {
-            const items = state.itemCollection;
-            items.push(action.item);
-            return Object.assign({}, state, {items:items})
+            const itemCollection = state.itemCollection.slice(0);
+            itemCollection[0].items.unshift(action.item);
+            itemCollection[1].items.unshift(action.item);
+            return Object.assign({}, state, {
+                itemCollection: itemCollection,
+            });
         }
         case 'LOCATION': {
             let location = state.location;
