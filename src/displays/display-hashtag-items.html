@@ -188,7 +188,7 @@ The following custom properties and mixins are available for styling:
         <div class="container" wide-layout$="{{wide}}">
             <!-- <div class="empty">{{localize('Currently no deals selected. Try a broader search.')}}</div> -->
             
-        <template is="dom-repeat" items="{{items}}">
+        <template id="repeater" is="dom-repeat" items="{{items}}">
             <div class="box" on-click="_toNewHere">
                 <div class="top">
                     <div class="datedescript">
@@ -311,6 +311,7 @@ The following custom properties and mixins are available for styling:
                     return (data.id == this.hashtagId);
                 });
                 this.items = filteredItems[0].items;
+                this.$.repeater.render();
             }
 
             /**
@@ -323,7 +324,7 @@ The following custom properties and mixins are available for styling:
                         .then((data) => {
                             this.hashtag = data;
                             this.loading = false;
-                            this._getDeals();
+                            this._getItems();
                         });
                 }
             }
@@ -331,7 +332,7 @@ The following custom properties and mixins are available for styling:
             /**
             * Gets the deals for the selected hashtag
             */
-            _getDeals() {
+            _getItems() {
                 this.deals = [];
                 Promise.all([
                     this.$.storage.accountExists(),
