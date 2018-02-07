@@ -15,7 +15,7 @@ This code may only be used under the license found at https://github.com/swarmci
 <link rel="import" href="../shared-styles.html">
 <link rel="import" href="../displays/display-unlock.html">
 <link rel="import" href="../displays/display-backup.html">
-
+<link rel="import" href="../displays/display-show-keys.html">
 <dom-module id="page-make-backup">
     <template>
         <!--
@@ -108,7 +108,7 @@ This code may only be used under the license found at https://github.com/swarmci
                 box-sizing: border-box;
                 background-color: var(--sc-white);
                 max-width: 700px;
-                margin-bottom: 10vh;
+                margin-bottom: 8vh;
             }
 
             .container[wide-layout] .box {
@@ -145,6 +145,14 @@ This code may only be used under the license found at https://github.com/swarmci
 
             .blur {
                 @apply --unlock-blur;
+            }
+
+            display-show-keys {
+                margin-top: 15px;
+            }
+
+            .container[wide-layout] display-show-keys {
+                margin-top: 35px;
             }
 
 
@@ -184,9 +192,12 @@ This code may only be used under the license found at https://github.com/swarmci
                         route="[[route]]">
                     </display-backup>
                 </div>
-                <div class="bluetext-margins" id="keys">
-                    <span class="bluetext" on-click="_toKeys">{{localize('show my keys')}}</span>
-                </div>
+                <display-show-keys
+                toggle-unlock="{{toggleUnlock}}"
+                toggle-private-key="{{togglePrivateKey}}" 
+                private-key="{{privateKey}}"
+                route="{{route}}"
+                ></display-show-keys>
             </div>
         </div>
         <dom-if if="{{toggleUnlock}}">
