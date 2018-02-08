@@ -35,15 +35,26 @@ Example:
             }
 
             .start-buttonbox {
+                @apply --layout-vertical;
+                @apply --layout-start-justified;
+                @apply --layout-center;
                 width: 100%;
             }
-
+            
+            .container[wide-layout] .start-buttonbox {
+                @apply --layout-vertical;
+                @apply --layout-start-justified;
+                @apply --layout-start;
+                width: 100%;
+            }
+            
             .start-button {
                 @apply --text-button-big;
                 box-sizing: border-box;
                 padding: 30px 30px;
                 margin-bottom: 10px;
                 max-width: 320px;
+                width:100%;
             }
 
             .button:active {
@@ -345,6 +356,11 @@ Example:
                 @apply --error-msg-wide;
             }
 
+            .bluelink {
+                margin-top: 2vh;
+                @apply --blue-link;
+            }
+
             @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
             only screen and (min--moz-device-pixel-ratio: 1.5),
             only screen and (min-resolution: 240dpi) {
@@ -362,7 +378,12 @@ Example:
                 <div class="start-buttonbox">
                     <div class="start-button" on-click="_sendSwt">{{localize('send SWT')}}</div>
                     <div class="start-button" on-click="_showShortcode">{{localize('shortcode')}}</div>
+                    <div class="bluelink" on-click="_showKeys">{{localize('show my keys')}}</div>
                 </div>
+            </template>
+
+            <template is="dom-if" if="{{keys}}">
+
             </template>
 
             <template is="dom-if" if="{{shortcode}}">

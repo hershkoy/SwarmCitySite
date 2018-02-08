@@ -14,8 +14,6 @@ This code may only be used under the license found at https://github.com/swarmci
 -->
 <link rel="import" href="../shared-styles.html">
 <link rel="import" href="../displays/display-profile-swr.html">
-<link rel="import" href="../displays/display-unlock.html">
-<link rel="import" href="../displays/display-show-keys.html">
 
 <dom-module id="page-my-profile">
     <template>
@@ -357,13 +355,6 @@ This code may only be used under the license found at https://github.com/swarmci
                     <div class="username">
                         <paper-input label="{{localize('Username')}}" value="{{username}}" always-float-label on-keyup="_saveUsername"></paper-input>
                     </div>
-                    <display-show-keys
-                        toggle-unlock="{{toggleUnlock}}"
-                        toggle-private-key="{{togglePrivateKey}}" 
-                        private-key="{{privateKey}}"
-                        route="{{route}}"
-                    ></display-show-keys>
-
                 </div>
                 <div class="topright" id="notifications">
                     <div class="notifications" on-click="_toNotifications">{{localize('no notifications')}}</div>
@@ -377,18 +368,6 @@ This code may only be used under the license found at https://github.com/swarmci
                 <div class="delete" on-click="_delete">{{localize('delete this user')}}</div>
             </div>
         </div>
-        <dom-if if="{{toggleUnlock}}">
-            <template>
-                <display-unlock 
-                    blue
-                    toggle-unlock="{{toggleUnlock}}"
-                    toggle-private-key="{{togglePrivateKey}}" 
-                    private-key="{{privateKey}}" 
-                    qr-code-private-key="{{qrCodePrivateKey}}"
-                    qr-code-public-key="{{qrCodePublicKey}}">
-                </display-unlock>
-            </template>
-        </dom-if>
     </template>
 
     <script>

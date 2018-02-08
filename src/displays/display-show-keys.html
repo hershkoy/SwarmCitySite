@@ -51,12 +51,13 @@ Example:
             }
 
             .greylink {
-                @apply --small-bold;
+                @apply --blue-link-small;
+                /* @apply --small-bold;
                 cursor: pointer;
                 color: var(--sc-grey3);
                 text-decoration: none;
                 border-bottom: 2px dotted var(--sc-grey3b);
-                margin-top: 10px;
+                margin-top: 10px; */
             }
 
             .keybox[wide-layout] .greylink {
@@ -183,7 +184,7 @@ Example:
 
             <dom-if if="{{toggleKeys}}">
                 <template>
-                        <div class="greylink" on-click="_togglePublicKey">{{localize('show my keys')}}</div>
+                        <div class="greylink" on-click="_linkToPage">{{localize('show my keys')}}</div>
                 </template>
             </dom-if>
 
@@ -403,6 +404,9 @@ Example:
             */
             _togglePrivateKey() {
                 this.toggleUnlock = !this.toggleUnlock;
+            }
+            _linkToPage() {
+                this.set('route.path', 'my-keys');
             }
             /**
             * Scrolls to show keys in viewport
