@@ -334,15 +334,15 @@
                     }
                 });
 
-                // subscribe to updates of the tx history
                 this.socket.emit('subscribe', {
-                    channel: 'txhistory',
+                    channel: 'txHistory',
                     args: {
                         publickey: this.publickey,
                     },
                 }, (reply) => {
                     if (reply.response == 200) {
                         this.transactions = reply.data;
+                        console.log(this.transactions);
                         this.dispatch('TRANSACTIONS', this.transactions);
                     }
                 });
